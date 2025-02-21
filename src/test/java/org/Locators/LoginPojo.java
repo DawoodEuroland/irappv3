@@ -3,13 +3,13 @@ package org.Locators;
 
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.StepDefinition.Login;
 import org.utilities.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPojo extends BaseClass {
-
 
     public LoginPojo() {
 
@@ -64,16 +64,7 @@ public class LoginPojo extends BaseClass {
     @AndroidFindBy(xpath = "//android.widget.CheckBox[@resource-id=\"recaptcha-anchor\"]")
     private WebElement checkboxCaptcha;
 
-//    @AndroidFindAll({
-//            @AndroidBy(xpath = "//android.widget.TextView[@text='Good Morning,']"),
-//            @AndroidBy(xpath = "//android.widget.TextView[@text='Good Evening,']"),
-//            @AndroidBy(xpath = "//android.widget.TextView[@text='Good Night,']")
-//    })
-//    private List<WebElement> greetingMessages;
-//
-//    public List<WebElement> getGreetingMessages() {
-//        return greetingMessages;
-//    }
+
 
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Good Morning,\"]")
@@ -167,13 +158,11 @@ public class LoginPojo extends BaseClass {
     public WebElement getContinuewithGoogle() {
         return continuewithGoogle;
     }
-//    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.google.android.gms:id/account_name\" and @text=\"dawoodibrahimj@gmail.com\"]")
-//    private WebElement mailSelection;
+
 
     public WebElement getAccountElementByEmail(String email) {
         WebElement googleaccount =  driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.google.android.gms:id/account_name' and @text='"+email+"']"));
-        // String dynamicXPath = "//android.widget.TextView[@resource-id='com.google.android.gms:id/account_name' and @text='" + email + "']";
-        //return driver.findElement(By.xpath(dynamicXPath));
+
         return googleaccount;
     }
 
@@ -218,4 +207,14 @@ public class LoginPojo extends BaseClass {
     public WebElement getGetPrivacyPopupCancelButton() {
         return getPrivacyPopupCancelButton;
     }
+
+
+    //Delete Account
+    public WebElement getFirstNameIcon(char icon) {
+        WebElement IconLetter = driver.findElement(By.xpath("//android.widget.TextView[@text='"+icon+"']"));
+        return IconLetter;
+    }
+
+
+
 }

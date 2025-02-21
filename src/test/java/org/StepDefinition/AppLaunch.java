@@ -16,9 +16,16 @@ LaunchApp(appName,udid);
 
     @Then("To check whether the app update notification popup is displayed and enable it")
     public void to_check_whether_the_app_update_notification_popup_is_displayed_and_enable_it() {
-    app = new AppSetupPojo();
-    Click(app.getYesNotifyButton(),10);
-    Click(app.getAllowNotificationSystemButton(),10);
+        app = new AppSetupPojo();
+        Click(app.getYesNotifyButton(),10);
+        try {
+            if (app.getAllowNotificationSystemButton().isDisplayed()) {
+                Click(app.getAllowNotificationSystemButton(),10);
+                System.out.println(" System App update popup displayed. Clicked 'I will do it later'.");
+            }
+        } catch (Exception e) {
+            System.out.println(" System App update popup not displayed. Proceeding to next action.");
+        }
     }
     @Then("To check whether the AppUpdate Popup is displaying and click i will do it later button")
     public void to_check_whether_the_app_update_popup_is_displaying_and_click_i_will_do_it_later_button() throws InterruptedException {

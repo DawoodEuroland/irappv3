@@ -8,7 +8,7 @@ import org.utilities.BaseClass;
 
 
 public class Login extends BaseClass {
-
+String gmail;
         LoginPojo login;
 
         @Then("To click the signinsignup button at top")
@@ -86,10 +86,10 @@ public class Login extends BaseClass {
         public void to_click_the_verify_captcha_screen() throws InterruptedException {
             sleep(3000);
 
-            Click(login.getCheckboxCaptcha(),10);
         }
         @Then("To select the Captcha")
         public void to_select_the_captcha() throws InterruptedException {
+
             sleep(15000);
         }
 
@@ -108,6 +108,7 @@ public class Login extends BaseClass {
     }
     @Then("To select the google account {string}")
     public void to_select_the_google_account(String google) throws InterruptedException {
+        gmail = google;
         //login.getAccountElementByEmail(google);
         sleep(2000);
         Click(login.getAccountElementByEmail(google), 10);
@@ -133,6 +134,8 @@ public class Login extends BaseClass {
 
     @Then("To check whether user can be able to delete the account using delete button")
     public void to_check_whether_user_can_be_able_to_delete_the_account_using_delete_button() {
+char firstLetter = gmail.toUpperCase().charAt(0);
+Click(login.getFirstNameIcon(firstLetter),10);
 
     }
 

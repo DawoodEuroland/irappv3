@@ -15,7 +15,7 @@ Feature: To login to the application
     Then To Click the Continue with facebook button
     Then To provide users details and create the account using facebook
     Then To verify whether user has been logged in successfully into the app using facebook
-#    Then To check whether user can be able to signout from his account using signout button
+   Then To check whether user can be able to signout from his account using signout button
 
   @maillogin
   Scenario: To login using mail id

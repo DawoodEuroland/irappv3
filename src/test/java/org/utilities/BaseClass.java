@@ -19,7 +19,7 @@ public class BaseClass {
 
     public static void LaunchApp(String app, String udid) throws MalformedURLException {
         // Fetch the app package dynamically
-        String appPackage = AppDetails.getAppPackage(app);
+        String appPackage = AppConfig.getAppPackage(app);
 
         // Common app activity for all apps
         String appActivity = "com.euroland.irappv3.MainActivity";
@@ -29,8 +29,7 @@ public class BaseClass {
                 .setUdid(udid)
                 .setAppPackage(appPackage)
                 .setAppActivity(appActivity)
-                .setNoReset(true) // Adjust as per your needs
-                .setFullReset(false)
+                .setNoReset(false) // Adjust as per your needs
                 .autoGrantPermissions()
                 .setNewCommandTimeout(Duration.ofMinutes(3));
 
@@ -47,8 +46,7 @@ public class BaseClass {
 
     }
     public static void sendValues(WebElement element, String value,int timeoutInSeconds,int milli) {
-        //  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
-        //  wait.until(ExpectedConditions.visibilityOf(element));
+
         FluentWait<AndroidDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(timeoutInSeconds))    // Max timeout
                 .pollingEvery(Duration.ofMillis(milli))    // Polling interval
