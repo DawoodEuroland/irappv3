@@ -1,6 +1,6 @@
 package org.utilities;
 
-public class AppDetails {
+public class AppConfig {
 
     public static String getAppPackage(String appName) {
         switch (appName.toLowerCase()) {
