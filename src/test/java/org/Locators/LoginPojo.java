@@ -215,6 +215,24 @@ public class LoginPojo extends BaseClass {
         return IconLetter;
     }
 
+//Account settings
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Delete Account\"]")
+    private WebElement deleteAccountButton;
 
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id=\"android:id/button1\"]")
+    private WebElement deleteButton;
 
+    public WebElement getDeleteAccountButton() {
+        return deleteAccountButton;
+    }
+
+    public WebElement getDeleteButton() {
+        return deleteButton;
+    }
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Sign out\"]")
+    private WebElement signOutButton;
+
+    public WebElement getSignOutButton() {
+        return signOutButton;
+    }
 }

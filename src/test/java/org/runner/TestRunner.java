@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/features", glue = "org.StepDefinition", dryRun = false
-        , plugin = "json:target\\Reports\\irapp.json" , tags = "@applaunch or @Googlelogin")
+        , plugin = "json:target\\Reports\\irapp.json" )
 
 
 public class TestRunner {
