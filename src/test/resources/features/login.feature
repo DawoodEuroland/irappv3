@@ -14,7 +14,7 @@ Feature: To login to the application
   Scenario: To login using mail id
     Then To click the signinsignup button at top
     Then To Click the continue with Email button
-    Then To Enter the valid email address in the Email field box with "dawod.ib@euroland.com"
+    Then To Enter the valid email address in the Email field box with "dawod12345.ibrahim12@euroland.com"
     Then To click the Next Button
     Then To Enter the First name as "Dawood"
     Then To Enter the last name as "Ibrahim"

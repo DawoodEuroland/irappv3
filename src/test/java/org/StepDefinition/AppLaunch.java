@@ -8,10 +8,11 @@ import java.net.MalformedURLException;
 
 public class AppLaunch extends BaseClass {
     AppSetupPojo app;
-
+    static String  appname;
     @Then("To launch the {string} app using device with udid {string}")
     public void to_launch_the_app_using_device_with_udid(String appName, String udid) throws MalformedURLException {
-LaunchApp(appName,udid);
+        appname = appName;
+        LaunchApp(appName,udid);
     }
 
     @Then("To check whether the app update notification popup is displayed and enable it")
