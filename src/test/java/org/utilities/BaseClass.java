@@ -31,6 +31,7 @@ public class BaseClass {
     public static WebDriver webDriver;
 
    // Android Driver methods
+
     public static void LaunchApp(String app, String udid) throws MalformedURLException {
         // Fetch the app package dynamically
         String appPackage = AppConfig.getAppPackage(app);
@@ -93,9 +94,41 @@ public class BaseClass {
                         ".scrollIntoView(new UiSelector().text(\"" + text + "\"))"));
     }
 
+    public static void halfSwipeDown() {
+        int screenWidth = driver.manage().window().getSize().width;
+        int screenHeight = driver.manage().window().getSize().height;
+        //    System.out.println("Screen Width: " + screenWidth + ", Screen Height: " + screenHeight);
+
+        int startX = screenWidth / 2;           // Center of the screen
+        int startY = (int) (screenHeight * 0.7); // Start from 30% of the screen
+        int endY = (int) (screenHeight * 0.3);   // Move to 60% (Halfway scroll)
+
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger1");
+        Sequence swipe = new Sequence(finger, 1)
+                .addAction(finger.createPointerMove(Duration.ofMillis(1000), PointerInput.Origin.viewport(), startX, startY))
+                .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), startX, endY))
+                .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        // System.out.println("Swipe Start: (" + startX + ", " + startY + "), End: (" + startX + ", " + endY + ")");
+
+        driver.perform(Arrays.asList(swipe));
+
+    }
+    public static void fullScrollForwardHorizontal() {
+        try {
+            driver.findElement(AppiumBy.androidUIAutomator(
+                    "new UiScrollable(new UiSelector().scrollable(true)).setAsHorizontalList().scrollForward();"
+            ));
+        } catch (Exception e) {
+            System.out.println("Horizontal scrolling failed: " + e.getMessage());
+        }
+    }
+
+
 
 
     //Common Methods For Android Driver and WebDriver
+
     public static void sleep(int milli) throws InterruptedException {
         Thread.sleep(milli);
     }
@@ -110,6 +143,7 @@ public class BaseClass {
         wait.until(ExpectedConditions.visibilityOf(element));
         element.sendKeys(value);
     }
+
     public static void Click(WebElement element, int timeoutInSeconds) {
         wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         wait.until(ExpectedConditions.visibilityOf(element));
@@ -153,5 +187,10 @@ public class BaseClass {
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(element));
         return element.getText();
+    }
+    // Generic method to wait until an element is visible
+    public static void elementVisibilityWait(WebElement element, int timeoutInSeconds) {
+        wait = new WebDriverWait(webDriver, Duration.ofSeconds(timeoutInSeconds));
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 }
